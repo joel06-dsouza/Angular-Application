@@ -1,0 +1,83 @@
+<nav class="navbar navbar-dark bg-dark justify-content-end">
+    <span class="navbar-brand mb-0 h1">
+          Welcome {{loginUsername}}
+    </span>
+    <input type="button" value="Log Out" (click)="logout()"/>
+</nav>
+
+
+
+<form [formGroup]="custObject.formCustomerGroup">
+    <table>
+        <tr>
+            <th>Customer ID:</th>
+            <td><input type="text" [(ngModel)]="custObject.id" formControlName="CustomerIDControl"/></td>
+            <span
+            class="text-danger"
+            *ngIf="custObject.formCustomerGroup.controls['CustomerIDControl'].dirty"
+            [hidden] = "!(hasError('pattern','CustomerIDControl'))"
+            >
+                Customer ID is not in proper format.
+            </span>
+            <span
+            class="text-danger"
+            *ngIf="custObject.formCustomerGroup.controls['CustomerIDControl'].dirty"
+            [hidden] = "!(hasError('required','CustomerIDControl'))"
+            >
+                Customer ID is required.
+            </span>
+        </tr>
+        <tr>
+            <th>Customer Name:</th>
+            <td><input type="text" [(ngModel)]="custObject.Name" formControlName="CustomerNameControl"/></td>
+            <span
+            class="text-danger"
+            *ngIf="custObject.formCustomerGroup.controls['CustomerNameControl'].dirty"
+            [hidden] = "!(hasError('required','CustomerNameControl'))"
+            >
+                Customer Name is required.
+            </span>
+        </tr>
+        <tr>
+            <th>Customer Amount:</th>
+            <td><input type="number" [(ngModel)]="custObject.Amount" [ngModelOptions]="{standalone: true}"/></td>
+        </tr>
+    </table>
+    <br />
+    <br />
+    
+    <!-- <input type="button" value="event binding demo" (click)="demo()"/> -->
+    <div>
+        <input type="button" value="Clear" (click)="clear()"/>
+        <input type="button" value="Add" (click)="add()" [disabled]="!(custObject.formCustomerGroup.valid)"/>
+        <input type="button" value="Update" (click)="update()"/>
+        <input type="button" value="Delete" (click)="delete()"/>
+        <input type="button" value="Add to JSON Server" (click)="posttoServer()" [disabled]="!(custObject.formCustomerGroup.valid)"/>
+        <input type="button" value="delete from server" (click)="deletefromServer()" />
+        <input type="button" value="Update to server" (click)="updatetoServer()" />
+    </div>
+</form>
+
+<br />
+<br />
+<table class="table table-bordered border-primary" style="width: 50pc;">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Amount</th>
+            <th>Select</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of customers">
+            <td>{{item.id}}</td>
+            <td>{{item.Name}}</td>
+            <td>{{item.Amount}}</td>
+            <td><input type="button" value="Select" (click)="select(item)"/></td>
+        </tr>
+    </tbody>
+</table>
+
+<app-usercontrol [grid-title]="'Customer Details'" [grid-data]="customers" (grid-selector)="select($event)"> 
+</app-usercontrol>

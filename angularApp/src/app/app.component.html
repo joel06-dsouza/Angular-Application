@@ -1,0 +1,54 @@
+<h2 style="text-align: center; color: indigo">
+  Welcome to Angular App!!!
+</h2>
+<div style="text-align: center;" >
+  <a [routerLink]="['home']">Home</a>&nbsp;&nbsp;
+  <a [routerLink]="['login']">Login</a>&nbsp;&nbsp;
+  <a [routerLink]="['button']">Button</a>&nbsp;&nbsp;
+  <a [routerLink]="['customer']">Customer</a>&nbsp;&nbsp;
+  <a [routerLink]="['product']">Product</a>&nbsp;&nbsp;
+  <a [routerLink]="['contact']">Contact</a>&nbsp;&nbsp;
+  <a [routerLink]="['crossfeild']">Crossfeild</a>&nbsp;&nbsp;
+  <a [routerLink]="['dynamicformarray']">Dynamic Form Array</a>&nbsp;&nbsp;
+</div>
+<!-- <h4>
+  String Interpolation
+</h4>
+{{title}}
+<br />
+{{count}}
+<br />
+<br />
+<hr /> -->
+<!-- horizontal Line   -->
+<!-- <home-ui></home-ui> 
+  <app-customer></app-customer>
+  
+  <app-product></app-product>
+-->
+<div [@fadeAnimation]="o.isActivated? o.activatedRoute : ''">
+  <router-outlet #o="outlet"></router-outlet>
+</div>
+
+<br /><br /><br /><br />
+<footer>
+  <hr />
+  <div style="text-align: center; color: indigo;">
+    Designed by ❤ from Mindcraft
+  </div>
+<!-- 
+
+  {{title | uppercase | reversestring}}
+
+  
+<b>Date format:</b> My joining Date is {{printDate | date}}.<br/>  
+<b>Specific Date Format:</b> My joining Date is {{printDate | date:"dd/MM/yyyy"}}<br/>  
+<b>Full Date Format:</b> My joining Date is {{printDate | date:"fullDate"}}<br/>  
+<b>Short Time format:</b> My joining Date is {{printDate | date:"shortTime"}}<br/>  
+<b>Medium Date format:</b> My joining Date is {{printDate | date:"mediumDate"}}<br/> 
+ -->
+
+
+
+
+</footer>
